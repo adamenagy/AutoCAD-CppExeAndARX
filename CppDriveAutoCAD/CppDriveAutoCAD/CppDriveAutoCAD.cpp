@@ -89,6 +89,10 @@ void driveAutoCAD()
 		hr = m_acPtr.CreateInstance(clsid,NULL,CLSCTX_LOCAL_SERVER);
 		printf("After CreateInstance; hr = 0x%08lx\n", hr);
 
+		BSTR caption;
+		hr = m_acPtr->get_Caption(&caption);
+		printf("After get_Caption; caption = %S; hr = 0x%08lx\n", caption, hr);
+		
 		// just for debugging
 		//m_acPtr->Visible = VARIANT_TRUE; 
 
@@ -118,6 +122,10 @@ void driveAutoCAD()
 	}
 
 	CoUninitialize(); 
+
+	// Wait for user to press enter
+	printf("Press enter to finish...");
+	getchar(); 
 }
 
 int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
